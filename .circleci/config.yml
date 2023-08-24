@@ -2,25 +2,31 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/configuration-reference/#jobs
+orbs:
+  ostorlab-circleci: ostorlab-circleci/ostorlab@1.0.0
+
 jobs:
   say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
       - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
 
-# Orchestrate jobs using workflows
-# See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
+  use-my-orb:
+    jobs:
+      - ostorlab-circleci/ostorlab:
+          ostorlab_api_key: The Generated API Key
+          asset_type: android-apk
+          break_on_risk_rating: HIGH
+          max_wait_minutes: 5
+          scan_profile: fast_scan
+          scan_title: test
+          target: files/app.apk
+          extra: --sbom package-lock.json
   say-hello-workflow:
     jobs:
       - say-hello
