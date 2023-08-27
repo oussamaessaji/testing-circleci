@@ -19,14 +19,14 @@ workflows:
   use-my-orb:
     jobs:
       - ostorlab-circleci/ostorlab:
-          ostorlab_api_key: AAAJFJFJF545445KFKKF
+          ostorlab_api_key: iSCEx8QF.GFJ60HXUsVqeMHdhO8Xs8jvisShiz5U6
           asset_type: android-apk
           break_on_risk_rating: HIGH
           max_wait_minutes: 5
           scan_profile: fast_scan
-          scan_title: test
+          scan_title: testin_sbom_circleci
           target: files/app.apk
-          extra: --sbom=files/app.apk
+          extra: --sbom=files/package-lock.json
   say-hello-workflow:
     jobs:
       - say-hello
