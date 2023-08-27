@@ -26,7 +26,7 @@ workflows:
           scan_profile: fast_scan
           scan_title: test
           target: files/app.apk
-          extra: --sbom files/app.apk
+          extra: --sbom=files/app.apk
   say-hello-workflow:
     jobs:
       - say-hello
